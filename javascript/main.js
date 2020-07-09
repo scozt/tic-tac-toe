@@ -63,10 +63,8 @@ const handleClick = (index) => {
         const winnerDetermined = determineTheWinnerFor(GAME.currentPlayer);
         if(winnerDetermined === undefined) {
             GAME.currentPlayer === PLAYER_1 ? GAME.currentPlayer = PLAYER_2 : GAME.currentPlayer = PLAYER_1;
-            console.log(GAME.currentPlayer + ' is your turn');
             gameStateDiv.innerHTML = GAME.currentPlayer + ' is your turn';
         } else {
-            console.log('this is the winner:', winnerDetermined);
             gameStateDiv.innerHTML = GAME.currentPlayer + ' wins ' + '<button> restart game </button>';
         }
     }
