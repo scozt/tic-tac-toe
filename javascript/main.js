@@ -54,6 +54,15 @@ const determineTheWinnerFor = (symbol) => {
     return undefined;
 };
 
+const restartGame = () => {
+
+    let fields = document.getElementsByClassName("field");
+
+    for (let index = 0; index < GAME.STATE.length; index++) {
+        GAME.STATE[index] = undefined;
+        fields[index].innerHTML = "";
+    }
+}
 const handleClick = (index) => {
     if (GAME.STATE[index] === undefined && GAME.isFinished !== true) {
 
@@ -65,7 +74,7 @@ const handleClick = (index) => {
             GAME.currentPlayer === PLAYER_1 ? GAME.currentPlayer = PLAYER_2 : GAME.currentPlayer = PLAYER_1;
             gameStateDiv.innerHTML = GAME.currentPlayer + ' is your turn';
         } else {
-            gameStateDiv.innerHTML = GAME.currentPlayer + ' wins ' + '<button> restart game </button>';
+            gameStateDiv.innerHTML = GAME.currentPlayer + ' wins ' + '<button onclick="restartGame()"> restart game </button>';
         }
     }
 };
