@@ -16,6 +16,10 @@ for(let index = 0; index < 9; index++) {
     fieldDiv.setAttribute('onclick', 'handleClick(' + index + ')');
     containerDiv.appendChild(fieldDiv);
 }
+const gameStateDiv = document.createElement("div");
+gameStateDiv.id = "gameState";
+containerDiv.appendChild(gameStateDiv);
+
 document.body.appendChild(containerDiv);
 
 const set = (value, index) => {
