@@ -1,0 +1,9 @@
+#container-grid {
+    width: 330px;
+    height: 330px;
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 15px;
+    grid-template-rows: 100px 100px 100px;
+}
