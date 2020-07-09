@@ -28,5 +28,7 @@ const handleClick = (index) => {
 
         const playerSymbol = game.currentPlayer === PLAYER_1 ? 'X' : 'O';
         set(playerSymbol, index);
+
+        game.currentPlayer === PLAYER_1 ?  game.currentPlayer = PLAYER_2 :  game.currentPlayer = PLAYER_1;
     }
 };
