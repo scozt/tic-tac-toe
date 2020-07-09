@@ -57,13 +57,15 @@ const determineTheWinnerFor = (symbol) => {
 const handleClick = (index) => {
     if (GAME.STATE[index] === undefined && GAME.isFinished !== true) {
 
-
         set(GAME.currentPlayer, index);
 
 
-        const winner = determineTheWinnerFor(playerSymbol);
-        if(winner !== undefined) {
-            console.log('this is the winner:', winner);
+        const winnerDetermined = determineTheWinnerFor(GAME.currentPlayer);
+        if(winnerDetermined === undefined) {
+            GAME.currentPlayer === PLAYER_1 ? GAME.currentPlayer = PLAYER_2 : GAME.currentPlayer = PLAYER_1;
+            console.log(GAME.currentPlayer + ' is your turn');
+        } else {
+            console.log('this is the winner:', winnerDetermined);
         }
     }
 };
