@@ -1,8 +1,8 @@
 const PLAYER_1 = 1;
 const PLAYER_2 = 2;
 
-const game = {
-    state: Array.from({ length: 9 }).fill(undefined),
+const GAME = {
+    STATE: Array.from({ length: 9 }).fill(undefined),
     currentPlayer: PLAYER_1,
 }
 const containerDiv = document.createElement("div");
@@ -18,17 +18,17 @@ for(let index = 0; index < 9; index++) {
 document.body.appendChild(containerDiv);
 
 const set = (value, index) => {
-    game.state[index] = value;
+    GAME.STATE[index] = value;
     let div = document.getElementById(index);
     div.innerHTML = value;
 };
 
 const handleClick = (index) => {
-    if (game.state[index] === undefined) {
+    if (GAME.STATE[index] === undefined) {
 
-        const playerSymbol = game.currentPlayer === PLAYER_1 ? 'X' : 'O';
+        const playerSymbol = GAME.currentPlayer === PLAYER_1 ? 'X' : 'O';
         set(playerSymbol, index);
 
-        game.currentPlayer === PLAYER_1 ?  game.currentPlayer = PLAYER_2 :  game.currentPlayer = PLAYER_1;
+        GAME.currentPlayer === PLAYER_1 ?  GAME.currentPlayer = PLAYER_2 :  GAME.currentPlayer = PLAYER_1;
     }
 };
