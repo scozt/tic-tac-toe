@@ -4,6 +4,7 @@ const PLAYER_2 = 2;
 const GAME = {
     STATE: Array.from({ length: 9 }).fill(undefined),
     currentPlayer: PLAYER_1,
+    isFinished: false,
 }
 const containerDiv = document.createElement("div");
 containerDiv.id = "container-grid";
@@ -41,6 +42,7 @@ const determineTheWinnerFor = (symbol) => {
         if(symbol === GAME.STATE[firstFieldIndex] &&
             GAME.STATE[firstFieldIndex] === GAME.STATE[secondFieldIndex] &&
             GAME.STATE[secondFieldIndex] === GAME.STATE[thirdFieldIndex]) {
+            GAME.isFinished = true;
             return symbol;
         }
     }
@@ -49,7 +51,7 @@ const determineTheWinnerFor = (symbol) => {
 };
 
 const handleClick = (index) => {
-    if (GAME.STATE[index] === undefined) {
+    if (GAME.STATE[index] === undefined && GAME.isFinished !== true) {
 
         const playerSymbol = GAME.currentPlayer === PLAYER_1 ? 'X' : 'O';
         set(playerSymbol, index);
