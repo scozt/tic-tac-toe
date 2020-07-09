@@ -23,6 +23,31 @@ const set = (value, index) => {
     div.innerHTML = value;
 };
 
+const determineTheWinnerFor = (symbol) => {
+    const fieldIndexCombinationsToFindoutTheWinner = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6],
+    ]
+    let firstFieldIndex, secondFieldIndex, thirdFieldIndex;
+    for(let fieldIndexes of fieldIndexCombinationsToFindoutTheWinner) {
+
+        [firstFieldIndex, secondFieldIndex, thirdFieldIndex] = fieldIndexes;
+        if(symbol === GAME.STATE[firstFieldIndex] &&
+            GAME.STATE[firstFieldIndex] === GAME.STATE[secondFieldIndex] &&
+            GAME.STATE[secondFieldIndex] === GAME.STATE[thirdFieldIndex]) {
+            return symbol;
+        }
+    }
+
+    return undefined;
+};
+
 const handleClick = (index) => {
     if (GAME.STATE[index] === undefined) {
 
@@ -30,5 +55,10 @@ const handleClick = (index) => {
         set(playerSymbol, index);
 
         GAME.currentPlayer === PLAYER_1 ?  GAME.currentPlayer = PLAYER_2 :  GAME.currentPlayer = PLAYER_1;
+
+        const winner = determineTheWinnerFor(playerSymbol);
+        if(winner !== undefined) {
+            console.log('this is the winner:', winner);
+        }
     }
 };
