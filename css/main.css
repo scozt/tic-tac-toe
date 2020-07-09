@@ -19,6 +19,9 @@
 
 #gameState {
     grid-column: 1/4;
-    justify-content: stretch;
     background-color: beige;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.25rem;
 }

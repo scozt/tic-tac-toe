@@ -16,7 +16,7 @@ for(let index = 0; index < 9; index++) {
     fieldDiv.setAttribute('onclick', 'handleClick(' + index + ')');
     containerDiv.appendChild(fieldDiv);
 }
-const gameStateDiv = document.createElement("div");
+let gameStateDiv = document.createElement("div");
 gameStateDiv.id = "gameState";
 containerDiv.appendChild(gameStateDiv);
 
@@ -60,7 +60,6 @@ const handleClick = (index) => {
         const playerSymbol = GAME.currentPlayer === PLAYER_1 ? 'X' : 'O';
         set(playerSymbol, index);
 
-        GAME.currentPlayer === PLAYER_1 ?  GAME.currentPlayer = PLAYER_2 :  GAME.currentPlayer = PLAYER_1;
 
         const winner = determineTheWinnerFor(playerSymbol);
         if(winner !== undefined) {
