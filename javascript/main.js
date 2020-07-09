@@ -1,6 +1,9 @@
+const PLAYER_1 = 1;
+const PLAYER_2 = 2;
 
 const game = {
     state: Array.from({ length: 9 }).fill(undefined),
+    currentPlayer: PLAYER_1,
 }
 const containerDiv = document.createElement("div");
 containerDiv.id = "container-grid";
