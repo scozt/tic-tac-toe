@@ -1,5 +1,5 @@
-const PLAYER_1 = 1;
-const PLAYER_2 = 2;
+const PLAYER_1 = 'X';
+const PLAYER_2 = 'O';
 
 const GAME = {
     STATE: Array.from({ length: 9 }).fill(undefined),
@@ -57,8 +57,8 @@ const determineTheWinnerFor = (symbol) => {
 const handleClick = (index) => {
     if (GAME.STATE[index] === undefined && GAME.isFinished !== true) {
 
-        const playerSymbol = GAME.currentPlayer === PLAYER_1 ? 'X' : 'O';
-        set(playerSymbol, index);
+
+        set(GAME.currentPlayer, index);
 
 
         const winner = determineTheWinnerFor(playerSymbol);
