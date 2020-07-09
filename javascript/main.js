@@ -11,11 +11,22 @@ containerDiv.id = "container-grid";
 for(let index = 0; index < 9; index++) {
     const fieldDiv = document.createElement('div');
     fieldDiv.className = 'field';
+    fieldDiv.id = index;
     fieldDiv.setAttribute('onclick', 'handleClick(' + index + ')');
     containerDiv.appendChild(fieldDiv);
 }
 document.body.appendChild(containerDiv);
 
+const set = (value, index) => {
+    game.state[index] = value;
+    let div = document.getElementById(index);
+    div.innerHTML = value;
+};
+
 const handleClick = (index) => {
-    console.table(game.state);
+    if (game.state[index] === undefined) {
+
+        const playerSymbol = game.currentPlayer === PLAYER_1 ? 'X' : 'O';
+        set(playerSymbol, index);
+    }
 };
