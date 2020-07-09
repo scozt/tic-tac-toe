@@ -62,6 +62,8 @@ const restartGame = () => {
         GAME.STATE[index] = undefined;
         fields[index].innerHTML = "";
     }
+    gameStateDiv.innerHTML = GAME.currentPlayer + ' is your turn';
+    GAME.isFinished = false;
 }
 const handleClick = (index) => {
     if (GAME.STATE[index] === undefined && GAME.isFinished !== true) {
