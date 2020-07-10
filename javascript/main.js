@@ -77,7 +77,7 @@ const handleClick = (index) => {
         }
         else if(winnerDetermined === undefined) {
             GAME.currentPlayer === PLAYER_1 ? GAME.currentPlayer = PLAYER_2 : GAME.currentPlayer = PLAYER_1;
-            gameStateDiv.innerHTML = GAME.currentPlayer + ' is your turn';
+            gameStateDiv.innerHTML = ' it\'s your turn: '  + GAME.currentPlayer;
         } else {
             gameStateDiv.innerHTML = GAME.currentPlayer + ' wins ' + '<button onclick="restartGame()"> restart game </button>';
         }
