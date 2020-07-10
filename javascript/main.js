@@ -75,23 +75,24 @@ const restartGame = () => {
     showTheTurnOfTheCurrentPlayer();
     GAME.isFinished = false;
 }
+const show = (message) => {
+    const gameStateDiv = document.getElementById("gameState");
+    gameStateDiv.innerHTML = message;
+}
 const handleClick = (index) => {
     if (GAME.STATE[index] === undefined && GAME.isFinished !== true) {
 
-        const gameStateDiv = document.getElementById("gameState");
-
         set(GAME.currentPlayer, index);
-
 
         const winnerDetermined = determineTheWinnerFor(GAME.currentPlayer);
         if(!GAME.STATE.includes(undefined) && winnerDetermined === undefined) {
-            gameStateDiv.innerHTML = "Ended in a tie" + "<button onclick=\"restartGame()\">restart game</button>";
+            show("Ended in a tie" + "<button onclick=\"restartGame()\">restart game</button>");
         }
         else if(winnerDetermined === undefined) {
             GAME.currentPlayer === PLAYER_1 ? GAME.currentPlayer = PLAYER_2 : GAME.currentPlayer = PLAYER_1;
             showTheTurnOfTheCurrentPlayer();
         } else {
-            gameStateDiv.innerHTML = GAME.currentPlayer + ' wins ' + '<button onclick="restartGame()"> restart game </button>';
+            show(GAME.currentPlayer + ' wins ' + '<button onclick="restartGame()"> restart game </button>');
         }
     }
 };
