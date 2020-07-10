@@ -6,34 +6,39 @@ const GAME = {
     currentPlayer: PLAYER_1,
     isFinished: false,
 }
-const containerDiv = document.createElement("div");
-containerDiv.id = "container-grid";
 
-for(let index = 0; index < 9; index++) {
-    const fieldDiv = document.createElement('div');
-    fieldDiv.className = 'field';
-    fieldDiv.id = index;
-    fieldDiv.setAttribute('onclick', 'handleClick(' + index + ')');
-    containerDiv.appendChild(fieldDiv);
-}
-let gameStateDiv = document.createElement("div");
-gameStateDiv.id = "gameState";
-containerDiv.appendChild(gameStateDiv);
+window.onload = (function buildUI() {
+    const containerDiv = document.createElement("div");
+    containerDiv.id = "container-grid";
 
-document.body.appendChild(containerDiv);
+    for(let index = 0; index < 9; index++) {
+        const fieldDiv = document.createElement('div');
+        fieldDiv.className = 'field';
+        fieldDiv.id = index;
+        fieldDiv.setAttribute('onclick', 'handleClick(' + index + ')');
+        containerDiv.appendChild(fieldDiv);
+    }
+    let gameStateDiv = document.createElement("div");
+    gameStateDiv.id = "gameState";
+    containerDiv.appendChild(gameStateDiv);
+
+    document.body.appendChild(containerDiv);
+
+    showTheTurnOfTheCurrentPlayer();
+})();
 
 function showTheTurnOfTheCurrentPlayer() {
+    const gameStateDiv = document.getElementById("gameState");
     gameStateDiv.innerHTML = ' it\'s your turn: ' + GAME.currentPlayer;
 }
 
-showTheTurnOfTheCurrentPlayer();
 const set = (value, index) => {
     GAME.STATE[index] = value;
     let div = document.getElementById(index);
     div.innerHTML = value;
 };
 
-const determineTheWinnerFor = (symbol) => {
+const determineTheWinnerFor = (player) => {
     const fieldIndexCombinationsToFindoutTheWinner = [
         [0,1,2],
         [3,4,5],
@@ -48,11 +53,11 @@ const determineTheWinnerFor = (symbol) => {
     for(let fieldIndexes of fieldIndexCombinationsToFindoutTheWinner) {
 
         [firstFieldIndex, secondFieldIndex, thirdFieldIndex] = fieldIndexes;
-        if(symbol === GAME.STATE[firstFieldIndex] &&
+        if(player === GAME.STATE[firstFieldIndex] &&
             GAME.STATE[firstFieldIndex] === GAME.STATE[secondFieldIndex] &&
             GAME.STATE[secondFieldIndex] === GAME.STATE[thirdFieldIndex]) {
             GAME.isFinished = true;
-            return symbol;
+            return player;
         }
     }
 
@@ -72,6 +77,8 @@ const restartGame = () => {
 }
 const handleClick = (index) => {
     if (GAME.STATE[index] === undefined && GAME.isFinished !== true) {
+
+        const gameStateDiv = document.getElementById("gameState");
 
         set(GAME.currentPlayer, index);
 
