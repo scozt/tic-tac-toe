@@ -67,7 +67,7 @@ const restartGame = () => {
         GAME.STATE[index] = undefined;
         fields[index].innerHTML = "";
     }
-    gameStateDiv.innerHTML = GAME.currentPlayer + ' is your turn';
+    showTheTurnOfTheCurrentPlayer();
     GAME.isFinished = false;
 }
 const handleClick = (index) => {
