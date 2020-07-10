@@ -22,6 +22,11 @@ containerDiv.appendChild(gameStateDiv);
 
 document.body.appendChild(containerDiv);
 
+function showTheTurnOfTheCurrentPlayer() {
+    gameStateDiv.innerHTML = ' it\'s your turn: ' + GAME.currentPlayer;
+}
+
+showTheTurnOfTheCurrentPlayer();
 const set = (value, index) => {
     GAME.STATE[index] = value;
     let div = document.getElementById(index);
@@ -77,7 +82,7 @@ const handleClick = (index) => {
         }
         else if(winnerDetermined === undefined) {
             GAME.currentPlayer === PLAYER_1 ? GAME.currentPlayer = PLAYER_2 : GAME.currentPlayer = PLAYER_1;
-            gameStateDiv.innerHTML = ' it\'s your turn: '  + GAME.currentPlayer;
+            showTheTurnOfTheCurrentPlayer();
         } else {
             gameStateDiv.innerHTML = GAME.currentPlayer + ' wins ' + '<button onclick="restartGame()"> restart game </button>';
         }
