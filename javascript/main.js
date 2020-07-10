@@ -72,7 +72,10 @@ const handleClick = (index) => {
 
 
         const winnerDetermined = determineTheWinnerFor(GAME.currentPlayer);
-        if(winnerDetermined === undefined) {
+        if(!GAME.STATE.includes(undefined) && winnerDetermined === undefined) {
+            gameStateDiv.innerHTML = "Ended in a tie" + "<button onclick=\"restartGame()\">restart game</button>";
+        }
+        else if(winnerDetermined === undefined) {
             GAME.currentPlayer === PLAYER_1 ? GAME.currentPlayer = PLAYER_2 : GAME.currentPlayer = PLAYER_1;
             gameStateDiv.innerHTML = GAME.currentPlayer + ' is your turn';
         } else {
